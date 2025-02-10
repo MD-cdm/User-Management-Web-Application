@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Users</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    animation: {
+                        fadeIn: "fadeIn 0.6s ease-out",
+                        shake: "shake 0.4s ease-in-out",
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            "0%": { opacity: "0", transform: "translateY(-10px)" },
+                            "100%": { opacity: "1", transform: "translateY(0)" },
+                        },
+                        shake: {
+                            "10%, 90%": { transform: "translateX(-2px)" },
+                            "20%, 80%": { transform: "translateX(2px)" },
+                            "30%, 50%, 70%": { transform: "translateX(-4px)" },
+                            "40%, 60%": { transform: "translateX(4px)" },
+                        },
+                    },
+                },
+            },
+        };
+    </script>
+</head>
+
+<body class="flex flex-col items-center justify-center min-h-screen bg-gradient-to-b from-black to-gray-900 text-white p-6">
+    
+    <!-- Navigation -->
+    <div class="w-full  max-w-5xl fixed top-6">
+        <a class="text-blue-500 hover:text-blue-400 transition duration-300 underline" href="/">⬅ Back to Home</a>
+    </div>
+
+    <!-- Title -->
+    <h2 class="text-3xl font-bold text-center mt-20 mb-8 animate-fadeIn">All Users</h2>
+
+    <!-- Users Container -->
+    <div class="flex gap-4 flex-wrap justify-center w-full mx-auto">
+        <% if (users.length > 0) { %>
+
+            <% users.forEach(function(user) { %>
+
+                <!-- User Card -->
+                <div class="w-80 h-96 bg-zinc-900 p-5 rounded-2xl shadow-lg transition transform hover:scale-105 hover:shadow-xl animate-fadeIn">
+                    <div class="w-full h-56 bg-zinc-700 rounded-lg overflow-hidden flex items-center justify-center">
+                        <img src="<%= user.image %>" alt="User Image" class="w-full h-full object-cover">
+                    </div>
+                    
+                    <h3 class="text-xl font-semibold mt-4"><%= user.name %></h3>
+                    <h5 class="text-zinc-400 text-sm"><%= user.email %></h5>
+
+                    <div class="flex gap-5 mt-4 text-sm">
+                        <a class="text-blue-400 hover:underline transition duration-300" href="/edit/<%= user.id %>">✏ Edit</a>
+                        <a class="text-red-500 hover:underline transition duration-300 hover:animate-shake" href="/delete/<%= user.id %>">🗑 Delete</a>
+                    </div>
+                </div>
+
+            <% }) %>
+
+        <% } else { %> 
+            <h1 class="text-zinc-500 font-semibold mt-40 text-xl animate-fadeIn">🚀 Currently No User Yet!</h1>
+        <% } %>
+    </div>
+
+    <!-- Footer (Fixed Bottom) -->
+    <div class="w-full max-w-5xl fixed bottom-6 text-center text-gray-500">
+        <p>&copy; 2025 All Rights Reserved</p>
+    </div>
+
+</body>
+
+</html>
