@@ -43,4 +43,4 @@ Image Upload Functionality instead of URL input.
 Better UI Improvements and Dashboard.   
 
 
-Thanks for Wisiting🥰💕🙌👍.
+Thanks for Visiting🥰💕🙌👍.
